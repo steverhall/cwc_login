@@ -46,23 +46,6 @@ function handleFormSubmit(e) {
     renderLogins();
 }
 
-// Delete a login entry
-function deleteLogin(id) {
-    // Find the login to get its website name for the confirmation
-    const login = logins.find(l => l.id === id);
-    
-    if (login && confirm(`Are you sure you want to delete the login for "${login.website}"?`)) {
-        // Remove from array
-        logins = logins.filter(l => l.id !== id);
-        
-        // Re-render
-        renderLogins();
-        
-        // Show success message
-        showSuccessMessage('Login deleted successfully!');
-    }
-}
-
 // Render all logins to the page
 function renderLogins() {
     // Update count
@@ -113,15 +96,8 @@ function createLoginCard(login) {
     infoDiv.appendChild(passwordText);
     infoDiv.appendChild(dateText);
     
-    // Create delete button
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'btn btn-danger';
-    deleteBtn.textContent = 'Delete';
-    deleteBtn.onclick = () => deleteLogin(login.id);
-    
     // Assemble card
     card.appendChild(infoDiv);
-    card.appendChild(deleteBtn);
     
     return card;
 }
